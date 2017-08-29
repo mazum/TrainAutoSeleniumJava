@@ -14,8 +14,16 @@ public class MyFirstTest {
         Assert.assertTrue(driver.getTitle().startsWith("Google"), "Title should start with Google");
         driver.findElement(By.name("q")).sendKeys("Selenium");
         driver.findElement(By.name("btnK")).click();
+        driver.findElement(By.className("g")).click();
         Thread.sleep(2000);
         driver.close();
         driver.quit();
+    }
+
+    @Test
+    public void loginToGmail(){
+        WebDriver driver=new ChromeDriver();
+        driver.navigate().to("https://www.gmail.com");
+        //driver.findElement(By.name())
     }
 }
