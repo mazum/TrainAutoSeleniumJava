@@ -12,7 +12,7 @@ public class MyFirstTest {
         WebDriver driver=new ChromeDriver();
         driver.navigate().to("http://www.google.com");
         Assert.assertTrue(driver.getTitle().startsWith("Google"), "Title should start with Google");
-        driver.findElement(By.name("q")).sendKeys("Selenium");
+        driver.findElement(By.id("lst-ib")).sendKeys("Selenium");
         driver.findElement(By.name("btnK")).click();
         driver.findElement(By.className("g")).click();
         Thread.sleep(2000);
@@ -24,6 +24,7 @@ public class MyFirstTest {
     public void loginToGmail(){
         WebDriver driver=new ChromeDriver();
         driver.navigate().to("https://www.gmail.com");
-        //driver.findElement(By.name())
+        driver.close();
+        driver.quit();
     }
 }
