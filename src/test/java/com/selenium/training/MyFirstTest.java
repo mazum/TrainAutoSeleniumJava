@@ -24,6 +24,8 @@ public class MyFirstTest {
     public void loginToGmail(){
         WebDriver driver=new ChromeDriver();
         driver.navigate().to("https://www.gmail.com");
+        driver.findElement(By.id("identifierId")).sendKeys("theknowledgeacademy");
+        driver.findElement(By.id("identifierNext")).click();
         driver.close();
         driver.quit();
     }
