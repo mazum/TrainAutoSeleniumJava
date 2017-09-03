@@ -5,15 +5,29 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class MyFirstTest {
+    private WebDriver driver;
+
+    @BeforeTest
+    public void beforeTest()
+    {
+        driver=driverFactory("Chrome");
+    }
+
     @Test
     public void googleSearch() throws InterruptedException {
-        WebDriver driver=driverFactory("Chrome");
         driver.navigate().to("https://www.google.co.nz/");
         Thread.sleep(2000);
+    }
+
+    @AfterTest
+    public void afterTest()
+    {
         driver.close();
         driver.quit();
     }
