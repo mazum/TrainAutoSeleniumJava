@@ -3,10 +3,7 @@ package com.selenium.training.pom.testcases;
 import com.selenium.training.pom.pages.HomePage;
 import com.selenium.training.pom.pages.HotelPage;
 import com.selenium.training.pom.utils.DriverFactory;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.util.concurrent.TimeUnit;
@@ -18,9 +15,11 @@ public class TestSuite01 {
     HomePage homePage;
     HotelPage hotelPage;
 
+    @Parameters({"browser","gridUrl"})
+
     @BeforeMethod
-    public void beforeTest() throws MalformedURLException {
-        DriverFactory.StartDriver("Chrome","");//http://localhost:4444/wd/hub");
+    public void beforeTest(String browser,String gridUrl) throws MalformedURLException {
+        DriverFactory.StartDriver(browser,gridUrl);//http://localhost:4444/wd/hub");
         DriverFactory.driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         DriverFactory.driver.manage().timeouts().pageLoadTimeout(120,TimeUnit.SECONDS);
         DriverFactory.driver.navigate().to("https://www.cleartrip.com/");

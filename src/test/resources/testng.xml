@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="TestSuite1">
+    <test name="Test01">
+        <parameter name="browser" value="Chrome" />
+        <parameter name="gridUrl" value="" />
+        <classes>
+            <class name="com.selenium.training.pom.testcases.TestSuite01"/>
+        </classes>
+    </test>
+</suite>
