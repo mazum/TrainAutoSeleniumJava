@@ -1,6 +1,7 @@
 package com.selenium.training.pom.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 /**
  * Created by Aby on 5/09/2017.
@@ -13,8 +14,9 @@ public class HomePage extends BasePage {
     protected By nextMonthLink=By.cssSelector("a.nextMonth");
     protected String dateDay="//td[@data-handler='selectDay']/a[contains(text(),$DAY)]";
 
-    public HomePage() {
-        super();
+    public HomePage(WebDriver driver) {
+        super(driver);
+        this.driver=driver;
     }
 
     public void EnterOrigin(String origin){
