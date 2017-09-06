@@ -1,6 +1,9 @@
 package com.selenium.training.pom.utils;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
@@ -8,9 +11,14 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -39,12 +47,32 @@ public class DriverFactory {
                 else
                     driver=new RemoteWebDriver(new URL(gridUrl),capabilities);
                 break;
+            default:
+                throw new NotImplementedException();
         }
     }
 
     public static void QuitDriver(){
+        try {
+            TakeScreenShot();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         driver.close();
         driver.quit();
         driver=null;
+    }
+
+    private static void TakeScreenShot() throws IOException {
+        String filename="Screenshot_"+new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String artifactBaseDirectory="C:\\Users\\Aby\\Desktop\\Training\\Selenium\\screenshots\\";
+        TakesScreenshot takesScreenshot=(TakesScreenshot)driver;
+        File src=takesScreenshot.getScreenshotAs(OutputType.FILE);
+        try {
+            FileUtils.copyFile(src, new File(artifactBaseDirectory + filename + ".png"));
+        }
+        catch (IOException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
